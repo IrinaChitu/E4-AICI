@@ -1,0 +1,11 @@
+li {
+    list-style: none;
+    padding-left: 15px;
+    background-color: #f2f2f2;
+}
+
+input[name="hour"] {
+    background-color: blue;
+}
+
+.occupied
