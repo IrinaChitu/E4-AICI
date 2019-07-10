@@ -1,11 +1,24 @@
+/*li {*/
+    /*list-style: none;*/
+    /*background-color: #f2f2f2;*/
+/*}*/
+/*li:nth-child(even) {*/
+    /*padding-left: 15px;*/
+    /*background-color: white;*/
+/*}*/
+
 li {
     list-style: none;
+}
+li:nth-child(even) {
     padding-left: 15px;
-    background-color: #f2f2f2;
 }
 
-input[name="hour"] {
-    background-color: blue;
+.occupied {
+    background-color: #ff8080;
 }
 
-.occupied
+.available {
+    background-color: #80ff80;
+}
+
