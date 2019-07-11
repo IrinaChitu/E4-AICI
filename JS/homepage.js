@@ -62,8 +62,8 @@ window.onload = function() {
         var w_machine = document.createElement("IMG");
         w_machine.setAttribute("src", "../images/washing-machine.png");
         w_machine.setAttribute("alt", "washing_machine_nr_" + i);
-        w_machine.setAttribute("width", "25%");
-        w_machine.setAttribute("height", "50%");
+        w_machine.setAttribute("width", "80%");
+        w_machine.setAttribute("height", "80%");
 
         link_machine.appendChild(w_machine);
         div_hover.appendChild(link_machine);

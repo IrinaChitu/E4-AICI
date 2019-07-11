@@ -43,6 +43,94 @@
         </div>
     </nav>
 
+    <!-- =================== Title Bar =================== -->
+
+    <div style="display: flex; justify-content: space-around">
+       <div id="header">
+         <a href="areazone.html" id="logo"><center>4Wash</center></a>
+         <ul id="menu">
+           <li><a href="areazone.html"><span>Home</wPoint></span></a></li>
+           <li><a href="homepage.html"><span>wPoint</wPoint></span></a></li>
+           <li><a href="about.html"><span>About</span></a></li>
+           <li><a href="contact.html"><span>Contact</span></a></li>
+         </ul>
+       </div>
+
+    </div>
+
+
+    <!-- ==================== Others =================================== -->
+
+    <!--<div style="height: 20%; width: 50%">-->
+        <!--<div class="hovereffect">-->
+            <!--<img src="../images/washing-machine.png" alt="washing_machine" style="height: 20%; width: 50%">-->
+            <!--<div class="overlay">-->
+                <!--<a class="info" href="#">aici adaug textul si pe a ul asta e css ul pus ca sa dispara</a>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+  <div style="position: relative; margin-left: auto; margin-right: auto;  width: 1060px; height: 100px">
+    <form id="dayProgram" action="/action_page.php" style="display: none; ">
+        <!--<h2>Radio Buttons fara name nu e submitted optiunea checked e daca vrei sa fie initial ceva checkuit by default || disabled='disabled' e pt orele care au fost deja ocupate in DB</h2>-->
+        <li><input type="radio" name="hour" value="10:00" >10:00<br></li>
+        <li><input type="radio" name="hour" value="10:30" >10:30<br></li>
+        <li><input type="radio" name="hour" value="11:00" >11:00<br></li>
+        <li><input type="radio" name="hour" value="11:30" >11:30<br></li>
+        <li><input type="radio" name="hour" value="12:00" >12:00<br></li>
+        <li><input type="radio" name="hour" value="12:30" >12:30<br></li>
+        <li><input type="radio" name="hour" value="13:00" >13:00<br></li>
+        <li><input type="radio" name="hour" value="13:30" >13:30<br></li>
+        <li><input type="radio" name="hour" value="14:00" >14:00<br></li>
+        <li><input type="radio" name="hour" value="14:30" >14:30<br></li>
+        <li><input type="radio" name="hour" value="15:00" >15:00<br></li>
+        <li><input type="radio" name="hour" value="15:30" >15:30<br></li>
+        <li><input type="radio" name="hour" value="16:00" >16:00<br></li>
+        <li><input type="radio" name="hour" value="16:30" >16:30<br></li>
+        <li><input type="radio" name="hour" value="17:00" >17:00<br></li>
+        <li><input type="radio" name="hour" value="17:30" >17:30<br></li>
+        <li><input type="radio" name="hour" value="18:00" >18:00<br></li>
+        <li><input type="radio" name="hour" value="18:30" >18:30<br></li>
+        <li><input type="radio" name="hour" value="19:00" >19:00<br></li>
+        <li><input type="radio" name="hour" value="19:30" >19:30<br></li>
+        <li><input type="radio" name="hour" value="20:00" >20:00<br></li>
+
+        <input type="submit" value="Submit">
+    </form>
+  </div>
+
+
+    <!-- ======================== Reserve pup-up ====================== -->
+
+    <div id="reserve" class="modal">
+
+        <form class="modal-content animate" action="">
+            <div class="imgcontainer">
+                <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+                <img src="../images/logo.png" alt="Avatar" class="avatar">
+            </div>
+
+            <div class="containerSign">
+                <label for="uname"><b>Username</b></label>
+                <input type="text" placeholder="Enter Username" name="uname" required>
+
+                <label for="psw"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="psw" required>
+
+                <button v-on:click="signInPressed" id="loginButton">Sign In</button>
+                <label>
+                    <input type="checkbox" checked="checked" name="remember"> Remember me
+                </label>
+            </div>
+
+            <div class="containerSign" style="background-color:#f1f1f1">
+                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+                <span class="psw"><a href="#" style="text-decoration: none;">Forgot password?</a></span>
+            </div>
+        </form>
+    </div>
+
+
+
     <!-- =================== Log IN Area  ==============================-->
 
     <div id="id01" class="modal">
@@ -109,42 +197,6 @@
         </form>
     </div>
 
-    <!-- ==================== Others =================================== -->
-
-    <!--<div style="height: 20%; width: 50%">-->
-        <!--<div class="hovereffect">-->
-            <!--<img src="../images/washing-machine.png" alt="washing_machine" style="height: 20%; width: 50%">-->
-            <!--<div class="overlay">-->
-                <!--<a class="info" href="#">aici adaug textul si pe a ul asta e css ul pus ca sa dispara</a>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
-    <form id="dayProgram" action="/action_page.php" style="display: none;">
-        <!--<h2>Radio Buttons fara name nu e submitted optiunea checked e daca vrei sa fie initial ceva checkuit by default || disabled='disabled' e pt orele care au fost deja ocupate in DB</h2>-->
-        <li><input type="radio" name="hour" value="10:00" >10:00<br></li>
-        <li><input type="radio" name="hour" value="10:30" >10:30<br></li>
-        <li><input type="radio" name="hour" value="11:00" >11:00<br></li>
-        <li><input type="radio" name="hour" value="11:30" >11:30<br></li>
-        <li><input type="radio" name="hour" value="12:00" >12:00<br></li>
-        <li><input type="radio" name="hour" value="12:30" >12:30<br></li>
-        <li><input type="radio" name="hour" value="13:00" >13:00<br></li>
-        <li><input type="radio" name="hour" value="13:30" >13:30<br></li>
-        <li><input type="radio" name="hour" value="14:00" >14:00<br></li>
-        <li><input type="radio" name="hour" value="14:30" >14:30<br></li>
-        <li><input type="radio" name="hour" value="15:00" >15:00<br></li>
-        <li><input type="radio" name="hour" value="15:30" >15:30<br></li>
-        <li><input type="radio" name="hour" value="16:00" >16:00<br></li>
-        <li><input type="radio" name="hour" value="16:30" >16:30<br></li>
-        <li><input type="radio" name="hour" value="17:00" >17:00<br></li>
-        <li><input type="radio" name="hour" value="17:30" >17:30<br></li>
-        <li><input type="radio" name="hour" value="18:00" >18:00<br></li>
-        <li><input type="radio" name="hour" value="18:30" >18:30<br></li>
-        <li><input type="radio" name="hour" value="19:00" >19:00<br></li>
-        <li><input type="radio" name="hour" value="19:30" >19:30<br></li>
-        <li><input type="radio" name="hour" value="20:00" >20:00<br></li>
-
-        <input type="submit" value="Submit">
-    </form>
 </body>
 
 </html>
