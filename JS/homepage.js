@@ -15,6 +15,22 @@ window.onload = function() {
         link_text.setAttribute("class", "info");
         link_text.setAttribute("href", "../HTML/washing_calendar.html")
 
+        let text_received;
+        // fetch('http://localhost:3000/')
+        //     .then((text_received) => {
+        //         link_text.innerText = text_received;
+        //         console.log(link_text);
+        //     });
+
+        fetch('http://localhost:3000/rezervari')
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(myJson) {
+                link_text.innerText = text_received;
+                console.log(link_text);
+            });
+
         var daily_program = document.getElementById("dayProgram").cloneNode(true);
         daily_program.setAttribute("style", "display: block");
 
