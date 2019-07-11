@@ -40,4 +40,22 @@ app.get('/users', (req, res) => {
 
 })
 
+  // Get Washing Point jsons
+
+app.get('/washingpoints', (req, res) => {
+    MongoClient.connect(url, function(err, db) {
+        if (err) throw err;
+
+        var dbo = db.db("4WashDB");
+
+        dbo.collection("WashPoint").find({}).toArray(function(err, result) {
+            if (err) throw err;
+            console.log(result);
+            db.close();
+            res.send({result: result});
+        });
+    });
+
+});
+
 app.listen(port, () => console.log(`App listening on port ${port}!`))
