@@ -22,13 +22,13 @@ window.onload = function() {
         //         console.log(link_text);
         //     });
 
-        fetch('http://localhost:3000/rezervari')
+        fetch('../users')
             .then(function(response) {
                 return response.json();
             })
             .then(function(myJson) {
                 link_text.innerText = text_received;
-                console.log(link_text);
+                console.log(myJson);
             });
 
         var daily_program = document.getElementById("dayProgram").cloneNode(true);
