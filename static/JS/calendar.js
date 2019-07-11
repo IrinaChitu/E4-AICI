@@ -14,6 +14,26 @@ window.onload = function() {
             line.childNodes[0].setAttribute("disabled", "disabled");
 
         }
-        console.log(line);
+        // console.log(line);
+    }
+
+
+
+    let today_progr = document.getElementById("today_program");
+    let hours = today_progr.children;
+    // console.log(hours);
+    for(let i=0; i<hours.length; i++) {
+        let line = hours[i];
+        // console.log(line);
+        if(i%2) {
+            line.setAttribute("class", "available");
+        }
+        else {
+            line.setAttribute("class", "occupied");
+        }
+        if(i%3==0) {
+            line.setAttribute("class", "available");
+
+        }
     }
 }

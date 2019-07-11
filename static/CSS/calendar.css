@@ -14,11 +14,29 @@ li:nth-child(even) {
     padding-left: 15px;
 }
 
+
+
+
+
 .occupied {
     background-color: #ff8080;
 }
 
 .available {
     background-color: #80ff80;
+}
+
+/*div > p:nth-child(even) {*/
+    /*padding-left: 25px;*/
+/*}*/
+
+div > p {
+    margin: 0px;
+    font-size: 20px;
+    text-align: center;
+}
+
+div > p:first-child {
+    background-color: white;
 }
 

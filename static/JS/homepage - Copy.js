@@ -2,16 +2,9 @@ nr_washing_machines = 8; // va fi extras din baza de date a spalatoriei curente
 
 window.onload = function() {
 
-    // document.body.appendChild();
-    // for(let i=0; i<nr_washing_machines; i++) {
-    //     let daily_program = document.getElementById("today_program").cloneNode(true);
-    //     daily_program.setAttribute("class", "hoverShow");
-    //     daily_program.setAttribute("style", "display: block");
-    // }
-
-    // var content = document.createElement("DIV");
-    // content.setAttribute("id", "container");
-    // document.body.appendChild(content);
+    var content = document.createElement("DIV");
+    content.setAttribute("id", "container");
+    document.body.appendChild(content);
     for(let i=0; i<nr_washing_machines; i++) {
         var div_hover = document.createElement("DIV");
         div_hover.setAttribute("class", "hovereffect");
@@ -20,7 +13,7 @@ window.onload = function() {
         div_text_program.setAttribute("class", "overlay");
         var link_text = document.createElement("A");
         link_text.setAttribute("class", "info");
-        // link_text.setAttribute("href", "washing_calendar.html")
+        link_text.setAttribute("href", "washing_calendar.html")
 
         let text_received;
         // fetch('http://localhost:3000/')
@@ -38,19 +31,22 @@ window.onload = function() {
                 console.log(myJson);
             });
 
-        var daily_program = document.getElementById("today_program").cloneNode(true);
+        var daily_program = document.getElementById("dayProgram").cloneNode(true);
         daily_program.setAttribute("style", "display: block");
 
-        var input_hour = daily_program.children;
+        var input_hour = daily_program.childNodes;
         console.log(input_hour);
         let verif_culori = 0;
         for(let i=0; i<input_hour.length; i++) {
             var line = input_hour[i];
+            if(line.nodeName != "LI")
+                continue;
             if(verif_culori%2) {        // conditia din DB pt program ocupat
                 line.setAttribute("class", "available");
             }
             else {
                 line.setAttribute("class", "occupied");
+                line.childNodes[0].setAttribute("disabled", "disabled");
 
             }
             verif_culori++;
@@ -74,7 +70,7 @@ window.onload = function() {
         div_hover.appendChild(link_machine);
         div_hover.appendChild(div_text_program);
 
-        document.body.appendChild(div_hover);
+        content.appendChild(div_hover);
     }
 
 
