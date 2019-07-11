@@ -38,6 +38,6 @@ app.get('/rezervari', (req, res) => {
 
 })
 
-app.use( express.static( 'E4-AICI' ) ); 
+app.use( express.static( 'E4-AICI' ) );
 
 app.listen(port, () => console.log(`App listening on port ${port}!`))
