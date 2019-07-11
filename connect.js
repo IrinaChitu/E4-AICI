@@ -1,61 +1,43 @@
 // connect Express Server to MongoDB database
-//
-// const express = require('express');
-// const mongodb = require('mongodb');
-//
-// const app = express();
-//
-// var MongoClient = require('mongodb').MongoClient
-//     , Server = require('mongodb').Server;
-//
-// var mongoClient = new MongoClient(new Server('104.248.89.22', 27017));
-// mongoClient.open(function(err, mongoClient) {
-//     var db1 = mongoClient.db("4WashDB");
-//
-//     mongoClient.close();
-// });
-//
-// let db = null;
-//
-//
-// app.get('/api/User', function (req, res) {
-//     db.collection('User').find().toArray((err, result) => {
-//         if (err) return console.log(err)
-//         res.send({
-//             courses: result
-//         })
-//     })
-// })
-//
-// mongodb.MongoClient.connect('mongodb://localhost:27017/', (err, client) => {
-//     if (err) return console.log(err)
-//     console.log('Connected to database')
-//     db = client.db('4WashDB');
-//     app.listen(3000, function () {
-//         console.log('Example app listening on port 3000!')
-//     })
-// })
-
-
 
 const express = require('express')
+const bodyParser = require('body-parser'); // will populate the req.body property with the parsed body when the Content-Type request header matches the type option, or an empty object ({}) if there was no body to parse
 const app = express()
 const port = 3000
 
+app.use( bodyParser.json() );
+
 
 var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://104.248.89.22:27017/4WashDB";
+var url = "mongodb://104.248.89.22:27017/4WashDB"; //ip + port MongoDB (asculta pt request-uri de la client)
 
-MongoClient.connect(url, function(err, db) {
-    if (err) throw err;
-    var dbo = db.db("4WashDB");
-    dbo.collection("User").findOne({}, function(err, result) {
+app.get('/rezervari', (req, res) => {
+
+    MongoClient.connect(url, function(err, db) {
         if (err) throw err;
-        console.log(result.name);
-        db.close();
+
+        var dbo = db.db("4WashDB");
+
+        var query = { username: "chitu_irina" };
+
+        // dbo.collection("User").findOne({}, function(err, result) {
+        //     if (err) throw err;
+        //     console.log(result.name);
+        //     app.get('/', (req, res) => res.send(result.name));
+        //     db.close();
+        // });
+
+        dbo.collection("User").find(query).toArray(function(err, result) {
+            if (err) throw err;
+            console.log(result);
+            res.send(result[0].active_reservations);
+            db.close();
+        });
+
     });
-});
 
-app.get('/', (req, res) => res.send('Hello World!'))
+})
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+app.use( express.static( 'E4-AICI' ) );
+
+app.listen(port, () => console.log(`App listening on port ${port}!`))
