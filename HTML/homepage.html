@@ -23,6 +23,8 @@
         <!--<li><a href="#contact">Contact</a></li>-->
         <!--<li><a href="#about">About</a></li>-->
     <!--</ul>-->
+
+    <!-- ===================== Navigation Bar ========================= -->
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -40,6 +42,74 @@
             </ul>
         </div>
     </nav>
+
+    <!-- =================== Log IN Area  ==============================-->
+
+    <div id="id01" class="modal">
+
+        <form class="modal-content animate" action="">
+            <div class="imgcontainer">
+                <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+                <img src="../images/logo.png" alt="Avatar" class="avatar">
+            </div>
+
+            <div class="containerSign">
+                <label for="uname"><b>Username</b></label>
+                <input type="text" placeholder="Enter Username" name="uname" required>
+
+                <label for="psw"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="psw" required>
+
+                <button v-on:click="signInPressed" id="loginButton">Sign In</button>
+                <label>
+                    <input type="checkbox" checked="checked" name="remember"> Remember me
+                </label>
+            </div>
+
+            <div class="containerSign" style="background-color:#f1f1f1">
+                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+                <span class="psw"><a href="#" style="text-decoration: none;">Forgot password?</a></span>
+            </div>
+        </form>
+    </div>
+
+    <div id="id02" class="modal">
+
+        <form class="modal-content animate" action="">
+            <div class="imgcontainer">
+                <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+                <img src="../images/logo.png" alt="Avatar" class="avatar">
+            </div>
+
+            <div class="containerSign">
+                <label for="firstname"><b>First Name</b></label>
+                <input v-model="inpSignUp.FirstName" type="text" placeholder="Enter your first name" name="firstname" required>
+
+                <label for="lastname"><b>Last Name</b></label>
+                <input v-model="inpSignUp.LastName" type="text" placeholder="Enter your last name" name="lastname" required>
+
+                <label for="mail"><b>Email</b></label>
+                <input v-model="inpSignUp.Email" type="text" placeholder="Enter Email" name="mail" required>
+
+                <label for="uname"><b>Username</b></label>
+                <input v-model="inpSignUp.Username" type="text" placeholder="Enter Username" name="uname" required>
+
+                <label for="psw"><b>Password</b></label>
+                <input v-model="inpSignUp.Password" type="password" placeholder="Enter Password" name="psw" required>
+
+                <!--Confirm Password-->
+
+                <button v-on:click="signUpPressed">Sign Up</button>
+
+            </div>
+
+            <div class="containerSign" style="background-color:#f1f1f1">
+                <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- ==================== Others =================================== -->
 
     <!--<div style="height: 20%; width: 50%">-->
         <!--<div class="hovereffect">-->

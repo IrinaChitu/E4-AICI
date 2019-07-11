@@ -11,6 +11,12 @@
     <meta name="keywords" content="map, gis, API, SDK, services, module, tutorials, routing, directions, route, truck, commercial vehicle" />
     <meta name="author" content="Microsoft Azure Maps" />
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
     <!-- Add references to the Azure Maps Map control JavaScript and CSS files. -->
     <link rel="stylesheet" href="https://atlas.microsoft.com/sdk/css/atlas.min.css?api-version=2" type="text/css" />
     <script src="https://atlas.microsoft.com/sdk/js/atlas.min.js?api-version=2"></script>
@@ -27,7 +33,102 @@
 </head>
 
 <body onload="GetMap()">
-    <div id="myMap" style="position: relative; margin-left: auto; margin-right: auto; bottom:0;  width: 1500px; height: 500px"></div>
+  <!-- ===================== Navigation Bar ========================= -->
+  <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+          <div class="navbar-header">
+              <a class="navbar-brand" href="areazone.html">4Wash</a>
+          </div>
+          <!--<ul class="nav navbar-nav">-->
+          <!--<li class="active"><a href="#">Home</a></li>-->
+          <!--<li><a href="#">Page 1</a></li>-->
+          <!--<li><a href="#">Page 2</a></li>-->
+          <!--</ul>-->
+          <ul class="nav navbar-nav navbar-right">
+              <li><a href="#" onclick="document.getElementById('id02').style.display='block'" style="width:auto;"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+              <!--join our community-->
+              <li><a href="#" onclick="document.getElementById('id01').style.display='block'" style="width:auto;"><span class="glyphicon glyphicon-log-in"></span> Sign In</a></li>
+          </ul>
+      </div>
+  </nav>
+
+  <!-- =================== Title Bar =================== -->
+  <div style="display: flex; justify-content: space-around">
+     <div> <img src="../images/preturi.png" alt="Preturi" width="350" height="350"> </div>
+     <div><h1>Middle</h1></div>
+    <div> <img src="../images/orar.png" alt="Note" width="350" height="350"> </div>
+  </div>
+
+
+
+  <!-- =================== MAP ================================== -->
+    <div id="myMap" style="position: relative; margin-left: auto; margin-right: auto; bottom:0;  width: 1000px; height: 500px"></div>
+
+    <!-- =================== Log IN Area  ==============================-->
+
+    <div id="id01" class="modal">
+
+        <form class="modal-content animate" action="">
+            <div class="imgcontainer">
+                <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+                <img src="../images/logo.png" alt="Avatar" class="avatar">
+            </div>
+
+            <div class="containerSign">
+                <label for="uname"><b>Username</b></label>
+                <input type="text" placeholder="Enter Username" name="uname" required>
+
+                <label for="psw"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="psw" required>
+
+                <button v-on:click="signInPressed" id="loginButton">Sign In</button>
+                <label>
+                    <input type="checkbox" checked="checked" name="remember"> Remember me
+                </label>
+            </div>
+
+            <div class="containerSign" style="background-color:#f1f1f1">
+                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+                <span class="psw"><a href="#" style="text-decoration: none;">Forgot password?</a></span>
+            </div>
+        </form>
+    </div>
+
+    <div id="id02" class="modal">
+
+        <form class="modal-content animate" action="">
+            <div class="imgcontainer">
+                <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+                <img src="../images/logo.png" alt="Avatar" class="avatar">
+            </div>
+
+            <div class="containerSign">
+                <label for="firstname"><b>First Name</b></label>
+                <input v-model="inpSignUp.FirstName" type="text" placeholder="Enter your first name" name="firstname" required>
+
+                <label for="lastname"><b>Last Name</b></label>
+                <input v-model="inpSignUp.LastName" type="text" placeholder="Enter your last name" name="lastname" required>
+
+                <label for="mail"><b>Email</b></label>
+                <input v-model="inpSignUp.Email" type="text" placeholder="Enter Email" name="mail" required>
+
+                <label for="uname"><b>Username</b></label>
+                <input v-model="inpSignUp.Username" type="text" placeholder="Enter Username" name="uname" required>
+
+                <label for="psw"><b>Password</b></label>
+                <input v-model="inpSignUp.Password" type="password" placeholder="Enter Password" name="psw" required>
+
+                <!--Confirm Password-->
+
+                <button v-on:click="signUpPressed">Sign Up</button>
+
+            </div>
+
+            <div class="containerSign" style="background-color:#f1f1f1">
+                <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
+            </div>
+        </form>
+    </div>
 </body>
 
 </html>
