@@ -1,0 +1,24 @@
+{
+  "name": "e4-aici",
+  "version": "1.0.0",
+  "description": "4Wash - gestionarea spalatoriilor dedicate studentilor",
+  "main": "connectToServer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hubgets-interns-2019/E4-AICI.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hubgets-interns-2019/E4-AICI/issues"
+  },
+  "homepage": "https://github.com/hubgets-interns-2019/E4-AICI#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongodb": "^3.2.7",
+    "mongoose": "^5.6.4"
+  }
+}

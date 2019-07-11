@@ -14,7 +14,30 @@ window.onload = function() {
         var link_text = document.createElement("A");
         link_text.setAttribute("class", "info");
         link_text.setAttribute("href", "../HTML/washing_calendar.html")
-        link_text.innerText = "yoyo";
+
+        var daily_program = document.getElementById("dayProgram").cloneNode(true);
+        daily_program.setAttribute("style", "display: block");
+
+        var input_hour = daily_program.childNodes;
+        console.log(input_hour);
+        let verif_culori = 0;
+        for(let i=0; i<input_hour.length; i++) {
+            var line = input_hour[i];
+            if(line.nodeName != "LI")
+                continue;
+            if(verif_culori%2) {        // conditia din DB pt program ocupat
+                line.setAttribute("class", "available");
+            }
+            else {
+                line.setAttribute("class", "occupied");
+                line.childNodes[0].setAttribute("disabled", "disabled");
+
+            }
+            verif_culori++;
+            console.log(line);
+        }
+
+        link_text.appendChild(daily_program);
         div_text_program.appendChild(link_text);
 
         var link_machine = document.createElement("A");

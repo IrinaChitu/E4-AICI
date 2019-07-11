@@ -13,7 +13,6 @@ window.onload = function() {
             line.setAttribute("class", "occupied");
             line.childNodes[0].setAttribute("disabled", "disabled");
 
-
         }
         console.log(line);
     }

@@ -117,3 +117,20 @@
 .hovereffect a.info:hover {
     box-shadow: 0 0 5px #fff;
 }
+
+
+/*program pe zile*/
+form > li {
+    list-style: none;
+}
+form > li:nth-child(even) {
+    padding-left: 15px;
+}
+
+.occupied {
+    background-color: #ff8080;
+}
+
+.available {
+    background-color: #80ff80;
+}
