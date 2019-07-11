@@ -1,57 +1,81 @@
+<!DOCTYPE html>
 <html>
 
 <head>
-    <script type="text/javascript" src="../JS/contact.js"> </script>
-    <link rel="stylesheet" href="../CSS/contact.css"/>
+    <title>Multiple routes by mode of travel - Azure Maps Web Control Samples</title>
 
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="IE=Edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="This tutorial shows how to perform multiple routes for different modes of travel and display them on the map." />
+    <meta name="keywords" content="map, gis, API, SDK, services, module, tutorials, routing, directions, route, truck, commercial vehicle" />
+    <meta name="author" content="Microsoft Azure Maps" />
 
-    <title>4Wash</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <!-- Add references to the Azure Maps Map control JavaScript and CSS files. -->
+    <link rel="stylesheet" href="https://atlas.microsoft.com/sdk/css/atlas.min.css?api-version=2" type="text/css" />
+    <script src="https://atlas.microsoft.com/sdk/js/atlas.min.js?api-version=2"></script>
+
+    <!-- Add a reference to the Azure Maps Services Module JavaScript file. -->
+    <script src="https://atlas.microsoft.com/sdk/js/atlas-service.js?api-version=2"></script>
+
+    <!-- Reference to areazone.js -->
+    <script src="JS/areazone.js"></script>
+
+    <link rel="stylesheet" href="CSS/areazone.css"/>
+
+
 </head>
 
-<body>
-    <!-- ===================== Navigation Bar ========================= -->
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="areazone.html">4Wash</a>
-            </div>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#" onclick="document.getElementById('id02').style.display='block'" style="width:auto;"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                <!--join our community-->
-                <li><a href="#" onclick="document.getElementById('id01').style.display='block'" style="width:auto;"><span class="glyphicon glyphicon-log-in"></span> Sign In</a></li>
-            </ul>
-        </div>
-    </nav>
+<body onload="GetMap()">
+  <!-- ===================== Navigation Bar ========================= -->
+  <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+          <div class="navbar-header">
+              <a class="navbar-brand" href="areazone.html">4Wash</a>
+          </div>
+          <!--<ul class="nav navbar-nav">-->
+          <!--<li class="active"><a href="#">Home</a></li>-->
+          <!--<li><a href="#">Page 1</a></li>-->
+          <!--<li><a href="#">Page 2</a></li>-->
+          <!--</ul>-->
+          <ul class="nav navbar-nav navbar-right">
+              <li><a href="#" onclick="document.getElementById('id02').style.display='block'" style="width:auto;"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+              <!--join our community-->
+              <li><a href="#" onclick="document.getElementById('id01').style.display='block'" style="width:auto;"><span class="glyphicon glyphicon-log-in"></span> Sign In</a></li>
+          </ul>
+      </div>
+  </nav>
 
-    <!-- =================== Title Bar =================== -->
+  <!-- =================== Title Bar =================== -->
 
 
-    <div style="display: flex; justify-content: space-around">
-       <div id="header">
-         <a href="areazone.html" id="logo"><center>4Wash</center></a>
-         <ul id="menu">
-           <li><a href="areazone.html"><span>Home</wPoint></span></a></li>
-           <li><a href="homepage.html"><span>wPoint</wPoint></span></a></li>
-           <li><a href="about.html"><span>About</span></a></li>
-           <li><a href="contact.html"><span>Contact</span></a></li>
-         </ul>
-       </div>
+  <div style="display: flex; justify-content: space-around">
+     <div> <img src="images/preturi.png" alt="Preturi" width="350" height="350"> </div>
+     <div>
+     <div id="header">
+       <a href="areazone.html" id="logo"><center>4Wash</center></a>
+       <ul id="menu">
+         <li><a href="areazone.html"><span>Home</wPoint></span></a></li>
+         <li><a href="homepage.html"><span>wPoint</wPoint></span></a></li>
+         <li><a href="about.html"><span>About</span></a></li>
+         <li><a href="contact.html"><span>Contact</span></a></li>
+       </ul>
+     </div>
+     <!-- =================== MAP ================================== -->
+       <div id="myMap" style="position: relative; margin-left: auto; margin-right: auto; top:60px;  width: 1060px; height: 580px"></div>
+     </div>
+    <div> <img src="images/orar.png" alt="Note" width="350" height="350"> </div>
+  </div>
 
-    </div>
 
-    <!-- ================== Text Area ================================ -->
 
-    <div  style="position: relative; margin-left: auto; margin-right: auto; top:60px">
-      <h1><p> Va rugam sa nu ne injurati! </p>
-      <p> Realizat de
-        <p>Ionascu Andrei </p>
-          <p>si </p>
-            <p>Chitu Irina </p></p></h1> </div>
+
 
     <!-- =================== Log IN Area  ==============================-->
 
@@ -60,7 +84,7 @@
         <form class="modal-content animate" action="">
             <div class="imgcontainer">
                 <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-                <img src="../images/logo.png" alt="Avatar" class="avatar">
+                <img src="images/logo.png" alt="Avatar" class="avatar">
             </div>
 
             <div class="containerSign">
@@ -88,7 +112,7 @@
         <form class="modal-content animate" action="">
             <div class="imgcontainer">
                 <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
-                <img src="../images/logo.png" alt="Avatar" class="avatar">
+                <img src="images/logo.png" alt="Avatar" class="avatar">
             </div>
 
             <div class="containerSign">
@@ -118,8 +142,6 @@
             </div>
         </form>
     </div>
-
-    <!-- ==================== Others =================================== -->
 </body>
 
 </html>

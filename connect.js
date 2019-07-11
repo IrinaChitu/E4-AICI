@@ -11,7 +11,9 @@ app.use( bodyParser.json() );
 var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://104.248.89.22:27017/4WashDB"; //ip + port MongoDB (asculta pt request-uri de la client)
 
-app.get('/rezervari', (req, res) => {
+app.use(express.static( 'static' ));
+
+app.get('/users', (req, res) => {
 
     MongoClient.connect(url, function(err, db) {
         if (err) throw err;
@@ -20,24 +22,22 @@ app.get('/rezervari', (req, res) => {
 
         var query = { username: "chitu_irina" };
 
-        // dbo.collection("User").findOne({}, function(err, result) {
-        //     if (err) throw err;
-        //     console.log(result.name);
-        //     app.get('/', (req, res) => res.send(result.name));
-        //     db.close();
-        // });
-
-        dbo.collection("User").find(query).toArray(function(err, result) {
+        dbo.collection("User").findOne({}, function(err, result) {
             if (err) throw err;
-            console.log(result);
-            res.send(result[0].active_reservations);
+            console.log(result.name);
+            res.send(JSON.stringify(result));
             db.close();
         });
+
+        // dbo.collection("User").find(query).toArray(function(err, result) {
+        //     if (err) throw err;
+        //     console.log(result);
+        //     res.send(result[0].active_reservations);
+        //     db.close();
+        // });
 
     });
 
 })
-
-app.use( express.static( 'E4-AICI' ) );
 
 app.listen(port, () => console.log(`App listening on port ${port}!`))
