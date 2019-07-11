@@ -8,6 +8,7 @@ Useful links:
 [- https://vuejs.org/v2/guide/ -> intoduction to Vue.js (it is recommended to use node.js to build your project from .vue component files)]
 - https://www.w3schools.com/nodejs/nodejs_mongodb_find.asp -> Node.js for MongoDB
 - https://www.tutorialsteacher.com/nodejs/access-mongodb-in-nodejs -> Node.js for MongoDB
+- https://mongodb.github.io/node-mongodb-native/api-articles/nodekoarticle1.html -> MongoDB queries
 
 [- https://mongoosejs.com/docs/queries.html -> mogoose: interrogating MongoDB with mongoose]
 
