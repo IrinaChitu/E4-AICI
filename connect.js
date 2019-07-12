@@ -37,7 +37,32 @@ app.get('/users', (req, res) => {
         // });
 
     });
+})
 
+app.get('/wahsingprograms', (req, res) => {
+
+    MongoClient.connect(url, function(err, db) {
+        if (err) throw err;
+
+        var dbo = db.db("4WashDB");
+
+        var query = {name: "Regie"};
+
+        dbo.collection("WashPoint").find(query).toArray(function(err, result) {
+            if (err) throw err;
+            console.log(result);
+            db.close();
+            res.send({result: result});
+        });
+
+        // dbo.collection("User").find(query).toArray(function(err, result) {
+        //     if (err) throw err;
+        //     console.log(result);
+        //     res.send(result[0].active_reservations);
+        //     db.close();
+        // });
+
+    });
 })
 
   // Get Washing Point jsons
