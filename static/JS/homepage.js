@@ -35,7 +35,7 @@ window.onload = function() {
             })
             .then(function(myJson) {
                 link_text.innerText = text_received;
-                console.log(myJson);
+                // console.log(myJson);
             });
 
         var daily_program = document.getElementById("today_program").cloneNode(true);

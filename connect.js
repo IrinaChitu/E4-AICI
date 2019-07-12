@@ -58,4 +58,32 @@ app.get('/washingpoints', (req, res) => {
 
 });
 
+
+app.get('/todayschedule', (req, res) => {
+
+    MongoClient.connect(url, function(err, db) {
+        if (err) throw err;
+
+        var dbo = db.db("4WashDB");
+
+        var query = { date: '2019-07-10T00:00:00.000+00:00' };
+
+        dbo.collection("WashPoint").find(query).toArray(function(err, result) {
+                if (err) throw err;
+                console.log(result);
+                res.send(result);
+                db.close();
+        });
+
+        // dbo.collection("User").find(query).toArray(function(err, result) {
+        //     if (err) throw err;
+        //     console.log(result);
+        //     res.send(result[0].active_reservations);
+        //     db.close();
+        // });
+
+    });
+
+})
+
 app.listen(port, () => console.log(`App listening on port ${port}!`))

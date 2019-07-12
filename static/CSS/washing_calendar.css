@@ -406,3 +406,25 @@ span.price {
         margin-bottom: 20px;
     }
 }
+
+
+
+/*----------TIME----------------*/
+li {
+    list-style: none;
+}
+
+div > li {
+    margin: 0px;
+    font-size: 20px;
+    text-align: center;
+}
+
+
+.occupied {
+    background-color: #ff8080;
+}
+
+.available {
+    background-color: #80ff80;
+}
