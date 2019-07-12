@@ -272,9 +272,9 @@ div > p {
     text-align: center;
 }
 
-div > p:first-child {
-    background-color: white;
-}
+/*div > p:first-child {*/
+    /*background-color: white;*/
+/*}*/
 
 form > li {
     list-style: none;
