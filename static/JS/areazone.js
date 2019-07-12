@@ -1,9 +1,3 @@
-if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(GetMap);
-}
-else {
-     alert("Geolocation is not supported by this browser.");
-}
 
 
 // function showPosition(position) {
@@ -13,17 +7,18 @@ else {
 
 function GetMap( position ) {
 
-  fetch('../washingpoints')
-      .then(function(response) {
-          return response.json();
-      })
-      .then(function(myJson) {
-          console.log(myJson);
-      });
+  if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(GetMap);
+  }
+  else {
+       alert("Geolocation is not supported by this browser.");
+  }
 
-fetch('../washingpoints').then(response => {
-    console.log(response);
-    // Do Rest
+
+  fetch('../washingpoints').then(function(response) {
+    return response.json();
+  }).then(function(myJson) {
+    console.log(myJson);
 
     // Create a new map
     var map = new atlas.Map("myMap", {
@@ -70,7 +65,7 @@ fetch('../washingpoints').then(response => {
       var marker = {style : '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="37" viewBox="0 0 30 37" xml:space="preserve"><rect x="0" y="0" rx="8" ry="8" width="30" height="30" fill="{color}"/><polygon fill="{color}" points="10,29 20,29 15,37 10,29"/><text x="15" y="20" style="font-size:16px;font-family:arial;fill:#ffffff;" text-anchor="middle">{text}</text></svg>',
                     color : 'Red'};
       // var user = {name: "You", position: {long = position.coords.longitude, lat = position.coords.latitude}};
-      var user = {name: "You", position: {long : 26.070248, lat : 44.475976}};
+       var user = {name: "You", position: {long : 26.070248, lat : 44.475976}};
       // var startPoint = new atlas.data.Feature(new atlas.data.Point([position.coords.longitude, position.coords.latitude]), {
 
       var startPoint = {pin: new atlas.data.Feature(new atlas.data.Point([user.position.long, user.position.lat]),
@@ -92,16 +87,23 @@ fetch('../washingpoints').then(response => {
 
       //Create array with every Washing Point
 
+      // console.log(myJson.result.length);
       /*Database informations*/
       washing_points_info = [];
+
+      for(let i = 0; i < myJson.result.length; i++){
+          washing_points_info.push({name: myJson.result[i].name, position: {long: myJson.result[i].longitude, lat: myJson.result[i].latitude}, link: " http://localhost:3000/homepage.html"});
+      }
+      /*
       washing_points_info.push({name: "1", position: {long: 26.102194, lat: 44.432511}, link: "https://www.w3schools.com"});
       washing_points_info.push({name: "2", position: {long: 26.056066, lat: 44.445172}, link: "https://www.w3schools.com"});
       washing_points_info.push({name: "3", position: {long: 26.089901, lat: 44.432660}, link: "https://www.w3schools.com"});
+      */
 
       var washing_points = [];
 
       for(let i = 0; i < washing_points_info.length; i++) {
-        let cont = '<a width="200" href="https://www.w3schools.com">' + washing_points_info[i].name + '</a>';
+        let cont = '<a width="200" href="http://localhost:3000/homepage.html">' + washing_points_info[i].name + '</a>';
 
         // console.log(washing_points_info[i].name);
         // console.log(washing_points_info[i].position);
@@ -116,7 +118,7 @@ fetch('../washingpoints').then(response => {
             distance:0,
             marker: new atlas.HtmlMarker({
               htmlContent: marker.style,
-              text: washing_points_info[i].name,
+              text: i+1,
               color: marker.color,
               position: [washing_points_info[i].position.long, washing_points_info[i].position.lat],
               popup: new atlas.Popup({
@@ -150,7 +152,7 @@ fetch('../washingpoints').then(response => {
           washing_points[i].directions = directions[i];
         }
         //Sort washing points by shortest distance
-        washing_points.sort(function(a, b){ return b.distance - a.distance});
+        washing_points.sort(function(a, b){ return a.distance - b.distance});
 
         for(let i = washing_points.length - 1; i >= 0; i--){
           //Get data features from response
@@ -173,7 +175,7 @@ fetch('../washingpoints').then(response => {
         //Fit the map window to the bounding box defined by the start and end positions.
         map.setCamera({
             bounds: atlas.data.BoundingBox.fromData([startPoint.pin, washing_points[washing_points.length-1].pin]),
-            padding: 100
+            padding: 130
         });
 
         //Add the data to the data source.
@@ -190,24 +192,21 @@ fetch('../washingpoints').then(response => {
         }
       });
     });
+  });
 
-    });
+  //==================== Log IN Section =================================
 
+  // Get the modal
+  var modalLogin = document.getElementById('id01');
+  var modalSignUp = document.getElementById('id02');
 
-}
-
-//==================== Log IN Section =================================
-
-// Get the modal
-var modalLogin = document.getElementById('id01');
-var modalSignUp = document.getElementById('id02');
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modalLogin) {
-        modalLogin.style.display = "none";
-    }
-    if (event.target == modalSignUp) {
-        modalSignUp.style.display = "none";
-    }
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+      if (event.target == modalLogin) {
+          modalLogin.style.display = "none";
+      }
+      if (event.target == modalSignUp) {
+          modalSignUp.style.display = "none";
+      }
+  }
 }
