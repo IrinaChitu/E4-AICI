@@ -45,7 +45,7 @@ window.onload = function() {
                     line.childNodes[0].setAttribute("disabled", "disabled");        }
                 if(i%3==0) {
                     line.setAttribute("class", "available");
-
+                    line.childNodes[0].removeAttribute("disabled");
                 }
             }
 

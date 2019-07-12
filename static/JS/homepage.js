@@ -101,12 +101,11 @@ window.onload = function() {
 
         if(userName.value === "nic_irina" && password.value === "micro")
         {
-            userName.parentNode.parentNode.action = "http://localhost:3000/selectMode.html";
+            userName.parentNode.parentNode.action = "http://localhost:3000/logat.html";
         }
         else {
             alert("Incorrect username or password!");
         }
-        console.log("sadfsdf");
     }
 
 

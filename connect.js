@@ -66,10 +66,12 @@ app.get('/todayschedule', (req, res) => {
 
         var dbo = db.db("4WashDB");
 
-        var query = { date: '2019-07-10T00:00:00.000+00:00' };
+        let data_q = new Date("July 10, 2019")
+        var query = { date: data_q };
 
         dbo.collection("WashPoint").find(query).toArray(function(err, result) {
                 if (err) throw err;
+                console.log(result);
                 console.log(result);
                 res.send(result);
                 db.close();
